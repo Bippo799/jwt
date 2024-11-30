@@ -3,7 +3,7 @@ package jwk_test
 import (
 	"testing"
 
-	"github.com/wiowou/jwt-verify-go/jwk"
+	"github.com/wiowou/jwt/jwk"
 )
 
 func TestJWKUnmarshal(t *testing.T) {

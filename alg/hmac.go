@@ -5,9 +5,9 @@ import (
 	"crypto/hmac"
 	"fmt"
 
-	"github.com/wiowou/jwt-verify-go/constant"
-	"github.com/wiowou/jwt-verify-go/errs"
-	"github.com/wiowou/jwt-verify-go/types"
+	"github.com/wiowou/jwt/constant"
+	"github.com/wiowou/jwt/errs"
+	"github.com/wiowou/jwt/types"
 )
 
 // algHMAC implements the HMAC-SHA family of signing methods.

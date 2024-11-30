@@ -6,7 +6,7 @@ import (
 	"encoding/pem"
 	"fmt"
 
-	"github.com/wiowou/jwt-verify-go/errs"
+	"github.com/wiowou/jwt/errs"
 )
 
 // ToRSAPrivateKey parses a PEM encoded PKCS1 or PKCS8 private key

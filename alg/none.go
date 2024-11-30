@@ -4,8 +4,8 @@ import (
 	"crypto"
 	"fmt"
 
-	"github.com/wiowou/jwt-verify-go/errs"
-	"github.com/wiowou/jwt-verify-go/types"
+	"github.com/wiowou/jwt/errs"
+	"github.com/wiowou/jwt/types"
 )
 
 // None implements the none signing method.  This is required by the spec

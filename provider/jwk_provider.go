@@ -3,7 +3,7 @@ package provider
 import (
 	"crypto"
 
-	"github.com/wiowou/jwt-verify-go/jwk"
+	"github.com/wiowou/jwt/jwk"
 )
 
 // JWKProvider is the base implementation for all providers.

@@ -4,7 +4,7 @@ import (
 	"crypto"
 	"io"
 
-	"github.com/wiowou/jwt-verify-go/jwk"
+	"github.com/wiowou/jwt/jwk"
 )
 
 // IRemoteJWKProvider is the base interface for providers which update their public keys via a url.

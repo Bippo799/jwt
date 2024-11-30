@@ -12,9 +12,9 @@ import (
 	"math"
 	"math/big"
 
-	"github.com/wiowou/jwt-verify-go/constant"
-	"github.com/wiowou/jwt-verify-go/errs"
-	"github.com/wiowou/jwt-verify-go/types"
+	"github.com/wiowou/jwt/constant"
+	"github.com/wiowou/jwt/errs"
+	"github.com/wiowou/jwt/types"
 )
 
 func (jwk *JWK) fromCryptoKey(key any, X5C ...*x509.Certificate) error {

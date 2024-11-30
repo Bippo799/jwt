@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/wiowou/jwt-verify-go/alg"
-	"github.com/wiowou/jwt-verify-go/types"
+	"github.com/wiowou/jwt/alg"
+	"github.com/wiowou/jwt/types"
 )
 
 var hmacTestData = []struct {

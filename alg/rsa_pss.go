@@ -8,8 +8,8 @@ import (
 	"crypto/rsa"
 	"fmt"
 
-	"github.com/wiowou/jwt-verify-go/constant"
-	"github.com/wiowou/jwt-verify-go/errs"
+	"github.com/wiowou/jwt/constant"
+	"github.com/wiowou/jwt/errs"
 )
 
 // algRSAPSS implements the RSAPSS family of signing methods signing methods

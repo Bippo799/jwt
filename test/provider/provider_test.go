@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/wiowou/jwt-verify-go/provider"
+	"github.com/wiowou/jwt/provider"
 )
 
 func TestOnDemandProvider(t *testing.T) {

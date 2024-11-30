@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/wiowou/jwt-verify-go/errs"
+	"github.com/wiowou/jwt/errs"
 )
 
 // validateRequiredFields validates the signing algorithm is one the user specified as

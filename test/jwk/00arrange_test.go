@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/wiowou/jwt-verify-go/constant"
-	"github.com/wiowou/jwt-verify-go/jwk"
+	"github.com/wiowou/jwt/constant"
+	"github.com/wiowou/jwt/jwk"
 )
 
 var PublicKeys []jwk.JWK

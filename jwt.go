@@ -2,13 +2,13 @@
 package jwtv
 
 import (
-	"github.com/wiowou/jwt-verify-go/alg"
-	"github.com/wiowou/jwt-verify-go/constant"
-	"github.com/wiowou/jwt-verify-go/errs"
-	"github.com/wiowou/jwt-verify-go/jwk"
-	"github.com/wiowou/jwt-verify-go/provider"
-	"github.com/wiowou/jwt-verify-go/token"
-	"github.com/wiowou/jwt-verify-go/types"
+	"github.com/wiowou/jwt/alg"
+	"github.com/wiowou/jwt/constant"
+	"github.com/wiowou/jwt/errs"
+	"github.com/wiowou/jwt/jwk"
+	"github.com/wiowou/jwt/provider"
+	"github.com/wiowou/jwt/token"
+	"github.com/wiowou/jwt/types"
 )
 
 var (

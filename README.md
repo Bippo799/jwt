@@ -1,6 +1,6 @@
 # jwt
 
-[![build](https://github.com/golang-jwt/jwt/actions/workflows/build.yml/badge.svg)](https://github.com/Bippo799/jwt/actions/workflows/build.yml)
+[![build](https://github.com/golang-jwt/jwt/actions/workflows/build.yml/badge.svg)](https://github.com/wiowou/jwt/actions/workflows/build.yml)
 <!-- [![Coverage Status](https://coveralls.io/repos/github/golang-jwt/jwt/badge.svg?branch=main)](https://coveralls.io/github/golang-jwt/jwt?branch=main) -->
 
 A [go](http://www.golang.org) library for [JSON Web
@@ -23,28 +23,118 @@ your usage. See the examples provided.
 Version 1.23
 
 ## Audience
-
-
+You want a library that downloads public keys (JWKs) and periodically updates them
+to be used to verify the tokens (JWTs) parsed by the same library. 
+You want to
+* have default options that work for most use cases
+* easily verify JWTs using using the HMAC SHA, RSA, RSA-PSS, and ECDSA algorithms 
+* validate any claim, including custom claims, in a straightforward manner
+* easily override the default tools for json decoding 
+* easily add a custom signing/verification algorithm
 
 ## Getting Started
+
+```go
+package examples
+
+import (
+	"fmt"
+	"time"
+
+	jwt "github.com/wiowou/jwt"
+)
+
+func Example_verifyJWTWithOnDemandProviderSingleKey() {
+	// a Provider's responsibility is to provide JWK's, public keys,
+	// to be used in the verification of tokens, JWT's. 
+	// OnDemand Providers fetch JWK's from a url and expose an IsExpired
+	// method to check whether the FetchInterval has been reached. If so,
+	// call the UpdateCryptoKeys method.
+
+	// specify options for your Provider
+	options := jwt.OnDemandJWKProviderOptions{
+		HTTPTimeout:   time.Second * 30,
+		FetchInterval: time.Minute * 5,
+		FetchURL:      MyFetchURL,
+	}
+	prov := jwt.NewOnDemandJWKProvider(options)
+	err := prov.UpdateCryptoKeys()
+	if err != nil {
+		fmt.Println("%w", err)
+		return
+	}
+	// read the user's token from the request. This line simply retrieves the example token string
+	userTokenB64String := ValidTokens[0]
+	// create a token object from the base64 encoded token string
+	userToken, err := jwt.NewJWT().FromB64String(userTokenB64String)
+	if err != nil {
+		fmt.Println("%w", err)
+		return
+	}
+	// some tokens have an id attribute that references the id of a public json web key (jwk)
+	keyId := userToken.Header().GetString("id")
+	publicKey, ok := prov.FindCryptoKey(keyId)
+	if !ok {
+		fmt.Println("key not found")
+		return
+	}
+	// verify the user's token using the public key
+	err = userToken.Verify(publicKey)
+	if err != nil {
+		fmt.Println("%w", err)
+		return
+	}
+	fmt.Println("valid token")
+
+	// validate the claims contained in the token
+	validateClaims(userToken)
+
+	// Output:
+	// valid token
+}
+
+func validateClaims(token *jwt.JWT) {
+	// validate the issuer claim
+	issuer := token.Payload().Issuer() // common claims like issuer can be retrieved with method calls
+	if issuer != "my-issuer-4567" {
+		fmt.Println("failed issuer claim verification")
+	}
+
+	customStringClaim := token.Payload().GetString("customString")
+	if customStringClaim != "foo" {
+		fmt.Println("failed string claim verification")
+	}
+
+	customDateClaim := token.Payload().GetDate("customDate")
+	customDateClaimExpected := time.Date(2012, 4, 23, 18, 25, 43, 511000000, time.UTC)
+	if !customDateClaim.Equal(customDateClaimExpected) {
+		fmt.Println("failed date claim verification")
+	}
+
+	customStringArrayClaim := token.Payload().GetStringArray("customStringArray")
+	if customStringArrayClaim[0] != "abc" && customStringArrayClaim[1] != "def" && customStringArrayClaim[2] != "123" {
+		fmt.Println("failed string array claim verification")
+	}
+}
+```
 
 ### Installation Guidelines
 
 1. To install this package, use the command below to add it as a dependency in your Go program.
 
 ```sh
-go get -u github.com/Bippo799/jwt.git
+go get -u github.com/wiowou/jwt.git
 ```
 
 2. Import it in your code:
 
 ```go
-import "github.com/Bippo799/jwt"
+import jwt "github.com/wiowou/jwt"
 ```
 
 ## Examples
 
-See the [examples](https://github.com/Bippo799/jwt/tree/master/test/examples) folder for examples of usage.
+See the [examples](/test/examples) folder for examples of usage.
 
 ## Compliance
 
@@ -54,8 +144,8 @@ notable differences:
 
 * In order to protect against accidental use of [Unsecured
   JWTs](https://datatracker.ietf.org/doc/html/rfc7519#section-6), tokens using
-  `alg=none` will only be accepted if the constant
-  `jwt.UnsafeAllowNoneSignatureType` is provided as the key.
+  `alg=none` will only be accepted if the type
+  `jwt.UnsafeNone` is provided as the key.
 
 ## Project Status & Versioning
 

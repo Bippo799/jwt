@@ -3,7 +3,7 @@ package token_test
 import (
 	"testing"
 
-	"github.com/wiowou/jwt-verify-go/token"
+	"github.com/wiowou/jwt/token"
 )
 
 func TestSegment(t *testing.T) {

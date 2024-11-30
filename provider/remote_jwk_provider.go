@@ -13,8 +13,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/wiowou/jwt-verify-go/errs"
-	"github.com/wiowou/jwt-verify-go/jwk"
+	"github.com/wiowou/jwt/errs"
+	"github.com/wiowou/jwt/jwk"
 )
 
 // RemoteJWKProvider is the implementation for providers which update their public keys via a url.

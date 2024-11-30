@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/wiowou/jwt-verify-go/constant"
-	"github.com/wiowou/jwt-verify-go/errs"
+	"github.com/wiowou/jwt/constant"
+	"github.com/wiowou/jwt/errs"
 )
 
 // algECDSA implements the ECDSA family of signing algorithms.

@@ -4,7 +4,7 @@ import (
 	"crypto"
 	"crypto/x509"
 
-	"github.com/wiowou/jwt-verify-go/types"
+	"github.com/wiowou/jwt/types"
 )
 
 // JWK is used to marshal or unmarshal a JSON Web Key.

@@ -1,6 +1,6 @@
 package constant
 
-import "github.com/wiowou/jwt-verify-go/types"
+import "github.com/wiowou/jwt/types"
 
 // UnsafeAllowNoneSignatureType provides a typed way to use an empty key.
 const UnsafeAllowNoneSignatureType types.UnsafeNone = "none signing method allowed"

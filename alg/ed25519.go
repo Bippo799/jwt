@@ -6,7 +6,7 @@ import (
 	"crypto/rand"
 	"fmt"
 
-	"github.com/wiowou/jwt-verify-go/errs"
+	"github.com/wiowou/jwt/errs"
 )
 
 // algEd25519 implements the EdDSA family.

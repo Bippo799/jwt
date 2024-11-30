@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/wiowou/jwt-verify-go/types"
+	"github.com/wiowou/jwt/types"
 )
 
 // Segment implements the ISegment interface, uses a map[string]interface{}

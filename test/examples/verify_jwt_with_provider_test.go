@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	jwtv "github.com/wiowou/jwt-verify-go"
+	jwt "github.com/wiowou/jwt"
 )
 
 // In most situations a Remote provider should be chosen. Use an OnDemand provider when the token verification will be done using something like an AWS lambda, which only runs when a request is sent. In this case, the provider's background process - used to update public keys - will not run and the keys will have to updated manually when expired.
@@ -15,13 +15,13 @@ func Example_verifyJWTWithOnDemandJWKProvider() {
 		provider.UpdateCryptoKeys()
 		fmt.Println("updating keys")
 	}
-	// read the user's token from the request. Next line simply retrieves the example token string
+	// read the user's token from the request. This line simply retrieves the example token string
 	userTokenB64String := ValidTokens[0]
 	// create a token object from the base64 encoded token string
-	tokenOptions := jwtv.TokenOptions{
-		AllowableSigningAlgorithms: []string{jwtv.AlgRS256},
+	tokenOptions := jwt.TokenOptions{
+		AllowableSigningAlgorithms: []string{jwt.AlgRS256},
 	}
-	userToken, err := jwtv.NewJWT(tokenOptions).FromB64String(userTokenB64String)
+	userToken, err := jwt.NewJWT(tokenOptions).FromB64String(userTokenB64String)
 	if err != nil {
 		fmt.Println("%w", err)
 		return
@@ -50,21 +50,28 @@ func Example_verifyJWTWithOnDemandJWKProvider() {
 }
 
 func Example_verifyJWTWithOnDemandProviderSingleKey() {
-	options := jwtv.OnDemandJWKProviderOptions{
+	// a Provider's responsibility is to provide JWK's, public keys,
+	// to be used in the verification of tokens, JWT's.
+	// OnDemand Providers fetch JWK's from a url and expose an IsExpired
+	// method to check whether the FetchInterval has been reached. If so,
+	// call the UpdateCryptoKeys method.
+
+	// specify options for your Provider
+	options := jwt.OnDemandJWKProviderOptions{
 		HTTPTimeout:   time.Second * 30,
 		FetchInterval: time.Minute * 5,
 		FetchURL:      MyFetchURL,
 	}
-	prov := jwtv.NewOnDemandJWKProvider(options)
+	prov := jwt.NewOnDemandJWKProvider(options)
 	err := prov.UpdateCryptoKeys()
 	if err != nil {
 		fmt.Println("%w", err)
 		return
 	}
-	// read the user's token from the request. Next line simply retrieves the example token string
+	// read the user's token from the request. This line simply retrieves the example token string
 	userTokenB64String := ValidTokens[0]
 	// create a token object from the base64 encoded token string
-	userToken, err := jwtv.NewJWT().FromB64String(userTokenB64String)
+	userToken, err := jwt.NewJWT().FromB64String(userTokenB64String)
 	if err != nil {
 		fmt.Println("%w", err)
 		return
@@ -92,21 +99,21 @@ func Example_verifyJWTWithOnDemandProviderSingleKey() {
 }
 
 func Example_verifyJWTWithOnDemandProviderAllKeys() {
-	options := jwtv.OnDemandJWKProviderOptions{
+	options := jwt.OnDemandJWKProviderOptions{
 		HTTPTimeout:   time.Second * 30,
 		FetchInterval: time.Minute * 5,
 		FetchURL:      MyFetchURL,
 	}
-	prov := jwtv.NewOnDemandJWKProvider(options)
+	prov := jwt.NewOnDemandJWKProvider(options)
 	err := prov.UpdateCryptoKeys()
 	if err != nil {
 		fmt.Println("%w", err)
 		return
 	}
-	// read the user's token from the request. Next line simply retrieves the example token string
+	// read the user's token from the request. This line simply retrieves the example token string
 	userTokenB64String := ValidTokens[0]
 	// create a token object from the base64 encoded token string
-	userToken, err := jwtv.NewJWT().FromB64String(userTokenB64String)
+	userToken, err := jwt.NewJWT().FromB64String(userTokenB64String)
 	if err != nil {
 		fmt.Println("%w", err)
 		return
@@ -127,21 +134,21 @@ func Example_verifyJWTWithOnDemandProviderAllKeys() {
 }
 
 func Example_verifyJWTWithRemoteProviderAllKeys() {
-	options := jwtv.RemoteJWKProviderOptions{
+	options := jwt.RemoteJWKProviderOptions{
 		HTTPTimeout:   time.Second * 30,
 		FetchInterval: time.Minute * 5,
 		FetchURL:      MyFetchURL,
 	}
-	prov := jwtv.NewRemoteJWKProvider(options)
+	prov := jwt.NewRemoteJWKProvider(options)
 	err := prov.UpdateCryptoKeys()
 	if err != nil {
 		fmt.Println("%w", err)
 		return
 	}
-	// read the user's token from the request. Next line simply retrieves the example token string
+	// read the user's token from the request. This line simply retrieves the example token string
 	userTokenB64String := ValidTokens[0]
 	// create a token object from the base64 encoded token string
-	userToken, err := jwtv.NewJWT().FromB64String(userTokenB64String)
+	userToken, err := jwt.NewJWT().FromB64String(userTokenB64String)
 	if err != nil {
 		fmt.Println("%w", err)
 		return
@@ -163,9 +170,9 @@ func Example_verifyJWTWithRemoteProviderAllKeys() {
 	Cleanup()
 }
 
-func validateClaims(token *jwtv.JWT) {
+func validateClaims(token *jwt.JWT) {
 	// validate the issuer claim
-	issuer := token.Payload().Issuer() // common claims like issuer can be retreived with method calls
+	issuer := token.Payload().Issuer() // common claims like issuer can be retrieved with method calls
 	if issuer != "my-issuer-4567" {
 		fmt.Println("failed issuer claim verification")
 	}

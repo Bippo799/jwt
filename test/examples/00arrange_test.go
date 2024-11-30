@@ -9,10 +9,10 @@ import (
 	"os"
 	"time"
 
-	jwtv "github.com/wiowou/jwt-verify-go"
-	"github.com/wiowou/jwt-verify-go/jwk"
-	"github.com/wiowou/jwt-verify-go/token"
-	"github.com/wiowou/jwt-verify-go/types"
+	jwt "github.com/wiowou/jwt"
+	"github.com/wiowou/jwt/jwk"
+	"github.com/wiowou/jwt/token"
+	"github.com/wiowou/jwt/types"
 )
 
 var publicKeys []jwk.JWK
@@ -113,19 +113,19 @@ func createValidTokens() error {
 
 func init() {
 	Arrange()
-	options := jwtv.OnDemandJWKProviderOptions{
+	options := jwt.OnDemandJWKProviderOptions{
 		HTTPTimeout:   time.Second * 30,
 		FetchInterval: time.Microsecond,
 		FetchURL:      MyFetchURL,
 	}
-	provider = jwtv.NewOnDemandJWKProvider(options)
+	provider = jwt.NewOnDemandJWKProvider(options)
 	err := provider.UpdateCryptoKeys()
 	if err != nil {
 		fmt.Println("%w", err)
 		return
 	}
 
-	customOptions := jwtv.OnDemandJWKProviderOptions{
+	customOptions := jwt.OnDemandJWKProviderOptions{
 		HTTPTimeout:   time.Second * 30,
 		FetchInterval: time.Minute,
 		FetchURL:      MyFetchURL,
@@ -138,5 +138,5 @@ func init() {
 	}
 }
 
-var provider jwtv.IOnDemandJWKProvider
-var customProvider jwtv.IOnDemandJWKProvider
+var provider jwt.IOnDemandJWKProvider
+var customProvider jwt.IOnDemandJWKProvider

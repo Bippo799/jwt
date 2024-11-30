@@ -6,7 +6,7 @@ import (
 	"encoding/pem"
 	"fmt"
 
-	"github.com/wiowou/jwt-verify-go/errs"
+	"github.com/wiowou/jwt/errs"
 )
 
 // ToECDSAPrivateKey parses a PEM encoded Elliptic Curve Private Key Structure

@@ -5,16 +5,16 @@ import (
 	"fmt"
 	"io"
 
-	jwtv "github.com/wiowou/jwt-verify-go"
+	jwt "github.com/wiowou/jwt"
 )
 
 type CustomOnDemandJWKProvider struct {
-	*jwtv.OnDemandJWKProvider
+	*jwt.OnDemandJWKProvider
 }
 
-func NewCustomOnDemandJWKProvider(options jwtv.OnDemandJWKProviderOptions) jwtv.IOnDemandJWKProvider {
-	p := jwtv.NewOnDemandJWKProvider(options)
-	onDemandProvider := p.(*jwtv.OnDemandJWKProvider)
+func NewCustomOnDemandJWKProvider(options jwt.OnDemandJWKProviderOptions) jwt.IOnDemandJWKProvider {
+	p := jwt.NewOnDemandJWKProvider(options)
+	onDemandProvider := p.(*jwt.OnDemandJWKProvider)
 	t := CustomOnDemandJWKProvider{
 		OnDemandJWKProvider: onDemandProvider,
 	}
@@ -24,16 +24,19 @@ func NewCustomOnDemandJWKProvider(options jwtv.OnDemandJWKProviderOptions) jwtv.
 
 var customDecoderCalled bool = false
 
-func (t *CustomOnDemandJWKProvider) JSONDecodeCryptoKeys(responseBody io.Reader) ([]jwtv.JWK, error) {
+func (t *CustomOnDemandJWKProvider) JSONDecodeCryptoKeys(responseBody io.Reader) ([]jwt.JWK, error) {
+	// Your json body may look different
 	var jwks struct {
-		Keys []jwtv.JWK `json:"keys"`
+		Keys []jwt.JWK `json:"keys"`
 	}
+	// You may want to use a differnt json decoder
 	err := json.NewDecoder(responseBody).Decode(&jwks)
 	if err != nil {
 		return nil, err
 	}
-	// only used to verify that this method was called
+	// This line is only necessary in the context of this test
 	customDecoderCalled = true
+
 	return jwks.Keys, nil
 }
 
@@ -49,10 +52,10 @@ func Example_customOnDemandJWKProvider() {
 	// read the user's token from the request. Next line simply retrieves the example token string
 	userTokenB64String := ValidTokens[0]
 	// create a token object from the base64 encoded token string
-	tokenOptions := jwtv.TokenOptions{
-		AllowableSigningAlgorithms: []string{jwtv.AlgRS256},
+	tokenOptions := jwt.TokenOptions{
+		AllowableSigningAlgorithms: []string{jwt.AlgRS256},
 	}
-	userToken, err := jwtv.NewJWT(tokenOptions).FromB64String(userTokenB64String)
+	userToken, err := jwt.NewJWT(tokenOptions).FromB64String(userTokenB64String)
 	if err != nil {
 		fmt.Println("%w", err)
 		return

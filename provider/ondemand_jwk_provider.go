@@ -5,7 +5,7 @@ import (
 	"crypto"
 	"time"
 
-	"github.com/wiowou/jwt-verify-go/jwk"
+	"github.com/wiowou/jwt/jwk"
 )
 
 // OnDemandJWKProvider is the base implementation for an on-demand provider.

@@ -5,9 +5,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/wiowou/jwt-verify-go/jwk"
-	"github.com/wiowou/jwt-verify-go/token"
-	"github.com/wiowou/jwt-verify-go/types"
+	"github.com/wiowou/jwt/jwk"
+	"github.com/wiowou/jwt/token"
+	"github.com/wiowou/jwt/types"
 )
 
 var PublicKeys []jwk.JWK

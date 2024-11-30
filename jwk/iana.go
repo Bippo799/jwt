@@ -1,6 +1,6 @@
 package jwk
 
-import "github.com/wiowou/jwt-verify-go/constant"
+import "github.com/wiowou/jwt/constant"
 
 // IANARegisteredAlg is a set of "JSON Web Signature and Encryption Algorithms" from
 // https://www.iana.org/assignments/jose/jose.xhtml as defined in

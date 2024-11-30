@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/wiowou/jwt-verify-go/alg"
-	"github.com/wiowou/jwt-verify-go/errs"
+	"github.com/wiowou/jwt/alg"
+	"github.com/wiowou/jwt/errs"
 )
 
 // Token is the base type for types that represent a user's json web token.
@@ -101,32 +101,14 @@ func (t *Token[T, U]) Verify(keys ...crypto.PublicKey) error {
 	if err != nil {
 		return err
 	}
-	return t.VerifyWithAlgo(algorithm, keys...)
-	// if !t.isExtracted {
-	// 	return fmt.Errorf("%w.[Verify] uninitialized", errs.ErrToken)
-	// }
-	// segments := strings.Split(t.tokenStringB64, ".")
-	// if len(segments) != 3 {
-	// 	return fmt.Errorf("%w.[Verify] invalid string", errs.ErrToken)
-	// }
-	// headerPayload := strings.Join(segments[0:2], ".")
-	// algorithm, err := alg.GetAlg(t.header.AlgName())
-	// if err != nil {
-	// 	return err
-	// }
-	// for _, key := range keys {
-	// 	if err = algorithm.Verify(headerPayload, t.signature, key); err == nil {
-	// 		return nil
-	// 	}
-	// }
-	// return fmt.Errorf("%w.[Verify] invalid signature", errs.ErrToken)
+	return t.VerifyWith(algorithm, keys...)
 }
 
-// VerifyWithAlgo will verify a token's signature using the specified ISigningAlgorithm.
-// Verify will not validate the token! Validation entails checking the
+// VerifyWith will verify a token's signature using the specified ISigningAlgorithm.
+// VerifyWith will not validate the token! Validation entails checking the
 // token's claims via the Payload and ensuring that they are what
 // you expect.
-func (t *Token[T, U]) VerifyWithAlgo(algorithm alg.ISigningAlgorithm, keys ...crypto.PublicKey) error {
+func (t *Token[T, U]) VerifyWith(algorithm alg.ISigningAlgorithm, keys ...crypto.PublicKey) error {
 	if !t.isExtracted {
 		return fmt.Errorf("%w.[Verify] uninitialized", errs.ErrToken)
 	}

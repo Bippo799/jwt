@@ -3,7 +3,7 @@ package token
 import (
 	"time"
 
-	"github.com/wiowou/jwt-verify-go/types"
+	"github.com/wiowou/jwt/types"
 )
 
 type CognitoAccessToken = Token[CognitoHeader, CognitoAccessTokenPayload]

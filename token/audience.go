@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/wiowou/jwt-verify-go/errs"
+	"github.com/wiowou/jwt/errs"
 )
 
 // marshalSingleStringAsArray modifies the behavior of the Audience type,

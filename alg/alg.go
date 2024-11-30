@@ -3,8 +3,8 @@ package alg
 import (
 	"fmt"
 
-	"github.com/wiowou/jwt-verify-go/constant"
-	"github.com/wiowou/jwt-verify-go/errs"
+	"github.com/wiowou/jwt/constant"
+	"github.com/wiowou/jwt/errs"
 )
 
 // GetAlg retrieves the correct signing algorithm when provided with an algorithm name

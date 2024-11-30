@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/wiowou/jwt-verify-go/alg"
-	"github.com/wiowou/jwt-verify-go/pemc"
+	"github.com/wiowou/jwt/alg"
+	"github.com/wiowou/jwt/pemc"
 )
 
 var rsaPSSTestData = []struct {

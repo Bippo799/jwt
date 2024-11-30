@@ -6,7 +6,7 @@ import (
 	"encoding/base64"
 	"os"
 
-	"github.com/wiowou/jwt-verify-go/pemc"
+	"github.com/wiowou/jwt/pemc"
 )
 
 func decodeSegment(t interface{ Fatalf(string, ...any) }, signature string) (sig []byte) {

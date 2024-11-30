@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/wiowou/jwt-verify-go/alg"
-	"github.com/wiowou/jwt-verify-go/constant"
+	"github.com/wiowou/jwt/alg"
+	"github.com/wiowou/jwt/constant"
 )
 
 var noneTestData = []struct {

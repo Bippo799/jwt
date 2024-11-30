@@ -6,8 +6,8 @@ import (
 	"crypto/rsa"
 	"fmt"
 
-	"github.com/wiowou/jwt-verify-go/constant"
-	"github.com/wiowou/jwt-verify-go/errs"
+	"github.com/wiowou/jwt/constant"
+	"github.com/wiowou/jwt/errs"
 )
 
 // algRSA implements the RSA family of signing methods.
