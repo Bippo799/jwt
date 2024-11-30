@@ -151,8 +151,11 @@ notable differences:
 
 This library is not yet production ready. It is undergoing testing and the API is subject to change.
 
-## Extensions
+## Mission Statement
 
+Create a Go library for JWT verification and signing that 
+* makes JWK retrieval easy
+* relies on 0 external dependencies outside of the standard library
 
 ## Credits
 
