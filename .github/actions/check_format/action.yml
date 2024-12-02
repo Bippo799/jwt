@@ -1,0 +1,8 @@
+name: 'Format Check'
+description: 'check code formatting'
+runs:
+  using: "composite"
+  steps:
+  - name: run format check
+    run: ${GITHUB_ACTION_PATH//\\//}/../../../scripts/check_format.sh
+    shell: bash

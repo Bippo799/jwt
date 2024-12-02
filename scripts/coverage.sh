@@ -1,5 +1,5 @@
 #!/bin/bash
 
-go test ./... -coverprofile coverage.cov
+go test -v -covermode=count -coverprofile=coverage.cov ./...
 
 go tool cover -html coverage.cov
