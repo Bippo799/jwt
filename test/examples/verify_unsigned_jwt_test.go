@@ -6,7 +6,6 @@ import (
 	jwt "github.com/wiowou/jwt"
 )
 
-
 func Example_verifyUnsignedJWT() {
 	// read the user's token from the request. This line simply retrieves the example token string
 	userTokenB64String := NoSignatureToken
@@ -29,4 +28,4 @@ func Example_verifyUnsignedJWT() {
 	// Output:
 	// valid token
 
-} 
+}
