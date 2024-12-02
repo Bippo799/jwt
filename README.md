@@ -1,7 +1,6 @@
 # jwt
 
 [![build](https://github.com/golang-jwt/jwt/actions/workflows/build.yml/badge.svg)](https://github.com/wiowou/jwt/actions/workflows/build.yml)
-<!-- [![Coverage Status](https://coveralls.io/repos/github/golang-jwt/jwt/badge.svg?branch=main)](https://coveralls.io/github/golang-jwt/jwt?branch=main) -->
 [![codecov](https://codecov.io/gh/wiowou/jwt/graph/badge.svg?token=5RXHUBLRR1)](https://codecov.io/gh/wiowou/jwt)
 
 A [go](http://www.golang.org) library for [JSON Web
