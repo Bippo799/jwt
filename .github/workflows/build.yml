@@ -29,8 +29,8 @@ jobs:
             echo "Please format Go code by running: go fmt ./..."
             exit 1
           fi
-      - uses: ./github/actions/test
-      - uses: ./github/actions/build
+      - uses: ./.github/actions/test
+      - uses: ./.github/actions/build
         # run: |
         #   go install github.com/mfridman/tparse@latest  
         #   go vet ./...
