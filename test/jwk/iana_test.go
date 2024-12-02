@@ -3,7 +3,7 @@ package jwk_test
 import (
 	"testing"
 
-	"github.com/wiowou/jwt/jwk"
+	"github.com/wiowou/jwt/pkg/jwk"
 )
 
 func TestIANARegisteredAlg(t *testing.T) {

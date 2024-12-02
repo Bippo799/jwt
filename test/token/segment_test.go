@@ -3,7 +3,7 @@ package token_test
 import (
 	"testing"
 
-	"github.com/wiowou/jwt/token"
+	"github.com/wiowou/jwt/pkg/token"
 )
 
 func TestSegment(t *testing.T) {

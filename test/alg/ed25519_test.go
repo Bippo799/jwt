@@ -5,9 +5,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/wiowou/jwt/alg"
-	"github.com/wiowou/jwt/constant"
-	"github.com/wiowou/jwt/pemc"
+	"github.com/wiowou/jwt/pkg/alg"
+	"github.com/wiowou/jwt/pkg/constant"
+	"github.com/wiowou/jwt/pkg/pemc"
 )
 
 var ed25519TestData = []struct {

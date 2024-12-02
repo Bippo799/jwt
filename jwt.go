@@ -2,12 +2,12 @@
 package jwtv
 
 import (
-	"github.com/wiowou/jwt/alg"
-	"github.com/wiowou/jwt/constant"
-	"github.com/wiowou/jwt/errs"
-	"github.com/wiowou/jwt/jwk"
-	"github.com/wiowou/jwt/provider"
-	"github.com/wiowou/jwt/token"
+	"github.com/wiowou/jwt/pkg/alg"
+	"github.com/wiowou/jwt/pkg/constant"
+	"github.com/wiowou/jwt/pkg/errs"
+	"github.com/wiowou/jwt/pkg/jwk"
+	"github.com/wiowou/jwt/pkg/provider"
+	"github.com/wiowou/jwt/pkg/token"
 )
 
 var (

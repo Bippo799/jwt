@@ -7,8 +7,8 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/wiowou/jwt/jwk"
-	"github.com/wiowou/jwt/token"
+	"github.com/wiowou/jwt/pkg/jwk"
+	"github.com/wiowou/jwt/pkg/token"
 )
 
 func TestTokens(t *testing.T) {

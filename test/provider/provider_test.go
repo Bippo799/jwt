@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/wiowou/jwt/provider"
+	"github.com/wiowou/jwt/pkg/provider"
 )
 
 func TestOnDemandProvider(t *testing.T) {
