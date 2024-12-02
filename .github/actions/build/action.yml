@@ -1,0 +1,8 @@
+name: 'Build'
+description: 'build the library'
+runs:
+  using: "composite"
+  steps:
+  - name: run build
+    run: ${GITHUB_ACTION_PATH//\\//}/../../../scripts/build.sh
+    shell: bash

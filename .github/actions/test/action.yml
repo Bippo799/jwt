@@ -1,0 +1,8 @@
+name: 'Test'
+description: 'test the library'
+runs:
+  using: "composite"
+  steps:
+  - name: run tests
+    run: ${GITHUB_ACTION_PATH//\\//}/../../../scripts/test.sh
+    shell: bash
