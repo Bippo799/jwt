@@ -153,7 +153,9 @@ This library is not yet production ready. It is undergoing testing and the API i
 
 ## Mission Statement
 
-Create a Go library for JWT verification and signing that 
+Create a Go library that 
+* makes JWT verification and signing easy
+* makes claim validation easy
 * makes JWK retrieval easy
 * relies on 0 external dependencies outside of the standard library
 

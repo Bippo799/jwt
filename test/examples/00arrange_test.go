@@ -10,6 +10,7 @@ import (
 	"time"
 
 	jwt "github.com/wiowou/jwt"
+	"github.com/wiowou/jwt/constant"
 	"github.com/wiowou/jwt/jwk"
 	"github.com/wiowou/jwt/token"
 	"github.com/wiowou/jwt/types"
@@ -26,6 +27,7 @@ var validPayloads = []token.Payload{}
 
 var MyFetchURL string
 var ValidTokens = []string{}
+var NoSignatureToken = ""
 
 var Future = types.NewNumericDate(time.Date(2050, 1, 1, 0, 0, 0, 0, time.UTC))
 var Past = types.NewNumericDate(time.Date(2000, 1, 1, 0, 0, 0, 0, time.UTC))
@@ -57,6 +59,9 @@ func Arrange() {
 	createHeaders()
 	createPayloads()
 	if err := createValidTokens(); err != nil {
+		return
+	}
+	if err := createNoSignatureToken(); err != nil {
 		return
 	}
 
@@ -108,6 +113,25 @@ func createValidTokens() error {
 		return err
 	}
 	ValidTokens = append(ValidTokens, tok.ToB64String())
+	return nil
+}
+
+func createNoSignatureToken() error {
+	header := token.NewHeader()
+	header.Add("alg", constant.AlgNone)
+	header.Add("id", "idNone")
+
+	tok, err := token.NewJWT().FromSegments(*header, validPayloads[0])
+	if err != nil {
+		return err
+	}
+
+	err = tok.Sign(constant.UnsafeAllowNoneSignatureType)
+	if err != nil {
+		return err
+	}
+	NoSignatureToken = tok.ToB64String()
+
 	return nil
 }
 

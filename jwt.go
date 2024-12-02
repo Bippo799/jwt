@@ -8,7 +8,6 @@ import (
 	"github.com/wiowou/jwt/jwk"
 	"github.com/wiowou/jwt/provider"
 	"github.com/wiowou/jwt/token"
-	"github.com/wiowou/jwt/types"
 )
 
 var (
@@ -26,6 +25,7 @@ type IRemoteJWKProvider = provider.IRemoteJWKProvider
 type IOnDemandJWKProvider = provider.IOnDemandJWKProvider
 type ISigningAlgorithm = alg.ISigningAlgorithm
 type JWK = jwk.JWK
+type JWKProvider = provider.JWKProvider
 type JWT = token.JWT
 type OnDemandJWKProviderOptions = provider.OnDemandJWKProviderOptions
 type OnDemandJWKProvider = provider.OnDemandJWKProvider
@@ -35,7 +35,8 @@ type TokenOptions = token.TokenOptions
 
 // must wait for version 1.24
 // type Token[T IHeader, U IPayload] = token.Token[T, U]
-type UnsafeNone = types.UnsafeNone
+
+const UnsafeAllowNoneSignatureType = constant.UnsafeAllowNoneSignatureType
 
 var (
 	NewJWT                 = token.NewJWT
