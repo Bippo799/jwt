@@ -149,7 +149,7 @@ notable differences:
 
 ## Project Status & Versioning
 
-This library is not yet production ready. It is undergoing testing and the API is subject to change.
+This library is not yet production ready. It is undergoing testing and the API is subject to change. Please see the Releases portion of this repo for versioning.
 
 ## Mission Statement
 
@@ -163,3 +163,7 @@ Create a Go library that
 
 * The alg, pemc, token, and types packages were taken from the golang-jwt/jwt library (https://github.com/golang-jwt/jwt) and refactored.
 * The jwk and provider packages were taken from the MicahParks/jwkset library (https://github.com/MicahParks/jwkset) and refactored.
+
+## Understanding the Repo
+
+## Roadmap
