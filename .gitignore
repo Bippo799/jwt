@@ -1,4 +1,4 @@
-coverage.cov
+coverage.*
 output.json
 
 # compiled output

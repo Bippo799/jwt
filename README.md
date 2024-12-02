@@ -2,6 +2,7 @@
 
 [![build](https://github.com/golang-jwt/jwt/actions/workflows/build.yml/badge.svg)](https://github.com/wiowou/jwt/actions/workflows/build.yml)
 <!-- [![Coverage Status](https://coveralls.io/repos/github/golang-jwt/jwt/badge.svg?branch=main)](https://coveralls.io/github/golang-jwt/jwt?branch=main) -->
+[![codecov](https://codecov.io/gh/wiowou/jwt/graph/badge.svg?token=5RXHUBLRR1)](https://codecov.io/gh/wiowou/jwt)
 
 A [go](http://www.golang.org) library for [JSON Web
 Token](https://datatracker.ietf.org/doc/html/rfc7519) verification.
@@ -9,7 +10,7 @@ Token](https://datatracker.ietf.org/doc/html/rfc7519) verification.
 ## Features
 
 This library supports the parsing and verification as well as the generation and
-signing of JWTs.  Current supported signing algorithms are HMAC SHA, RSA,
+signing of JWTs.  Currently supported signing algorithms are HMAC SHA, RSA,
 RSA-PSS, and ECDSA, though you can add your own. It can also be used to retrieve public keys in json format to be transformed and used to verify a JWT.
 
 **SECURITY NOTICE:** It's important that you [validate the `alg` presented is

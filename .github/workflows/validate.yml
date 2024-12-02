@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -25,7 +25,10 @@ jobs:
       - uses: ./.github/actions/check_format
       - uses: ./.github/actions/build
       - uses: ./.github/actions/test
-      
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
   # coverage:
   #   runs-on: ubuntu-latest
   #   steps:
